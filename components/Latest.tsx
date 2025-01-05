@@ -2,12 +2,16 @@ import BlogCard from "./BlogCard"
 
 const Latest = () => {
   return (
-    <div className="">
+    <div className="flex flex-col gap-10">
         <h3 className="text-[46px]">
             Latest
         </h3>
-        <div>
-            <div className="grid grid-cols-3">
+        <div className="flex flex-col gap-16">
+            <div className="grid grid-cols-3 gap-10">
+                <BlogCard/>
+                <BlogCard/>
+                <BlogCard/>
+                <BlogCard/>
                 <BlogCard/>
             </div>
             <div className="w-full flex justify-center">

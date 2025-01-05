@@ -2,7 +2,7 @@ import Image from "next/image"
 import featuredImg from "../public/featured.png";
 const Featured = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-10">
         <div>
             <h1 className="text-[46px]">Featured</h1>
         </div>

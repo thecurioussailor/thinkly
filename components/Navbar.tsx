@@ -8,7 +8,7 @@ const Navbar = () => {
     const {data: session, status} = useSession();
     const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="fixed top-0 w-full border-b py-4 border-dashed border-[#a0a8adb8]">
+    <div className="fixed top-0 w-full border-b py-4 border-dashed border-[#a0a8adb8] bg-white z-50">
         <div className="px-8">
             <div className="flex justify-between items-center">
                 <Link href={'/'}>
