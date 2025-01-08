@@ -1,71 +1,89 @@
-'use client'
-
+"use client"
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { Input } from '@/components/ui/Input'
+import { Button } from '@/components/ui/Button'
+import { createBlog } from '../actions/blog'
+import { Badge } from '@/components/ui/badge'
+import { Label } from '@/components/ui/label'
+import TiptapEditor from '@/components/TiptapEditor'
 
 export default function CreatePost() {
   const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState('') // State for Tiptap content
+  const [tags, setTags] = useState<string[]>([])
+  const [currentTag, setCurrentTag] = useState('')
   const router = useRouter()
   const { data: session } = useSession()
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!session) {
-      alert('You must be signed in to create a post')
-      return
-    }
-    const response = await fetch('/api/posts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content }),
-    })
-    if (response.ok) {
+    const formData = new FormData(e.currentTarget)
+    console.log(formData)
+    formData.append('content', content) // Add content
+    formData.append('tags', JSON.stringify(tags)) // Add tags as JSON
+    try {
+      await createBlog(formData)
       router.push('/')
-    } else {
+    } catch (error) {
+      console.log(error)
       alert('Failed to create post')
     }
   }
 
+  const handleAddTag = () => {
+    if (currentTag && !tags.includes(currentTag)) {
+      setTags([...tags, currentTag])
+      setCurrentTag('')
+    }
+  }
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setTags(tags.filter(tag => tag !== tagToRemove))
+  }
+
   return (
-    <div className="max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Create New Post</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="flex flex-col justify-center items-center w-full p-40">
+      <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-[740px] gap-10">
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-            Title
-          </label>
-          <input
-            type="text"
-            id="title"
+          <Input
+            name="title"
+            placeholder="Title"
+            className="h-24 outline-none focus:text-[24px] placeholder:text-[24px]"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
         </div>
         <div>
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700">
-            Content
-          </label>
-          <textarea
-            id="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-            rows={10}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          />
+          <TiptapEditor content={content} onChange={setContent} />
         </div>
-        <button
-          type="submit"
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Create Post
-        </button>
+        <div>
+          <Label htmlFor="tags">Tags</Label>
+          <div className="flex space-x-2 mt-2">
+            <Input
+              id="tags"
+              value={currentTag}
+              onChange={(e) => setCurrentTag(e.target.value)}
+              placeholder="Add a tag"
+            />
+            <Button type="button" onClick={handleAddTag}>
+              Add Tag
+            </Button>
+          </div>
+          <div className="mt-2 space-x-2">
+            {tags.map(tag => (
+              <Badge key={tag} variant="secondary" className="cursor-pointer" onClick={() => handleRemoveTag(tag)}>
+                {tag} ×
+              </Badge>
+            ))}
+          </div>
+        </div>
+        <Button type="submit" className="text-white bg-green-700 w-20 hover:bg-green-900">
+          Publish
+        </Button>
       </form>
     </div>
   )
 }
-

@@ -1,7 +1,6 @@
 import Featured from "@/components/Featured";
 import Filter from "@/components/Filter";
 import Latest from "@/components/Latest";
-import { Button } from "@/components/ui/Button";
 
 export default function Home() {
   return (

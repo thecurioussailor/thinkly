@@ -21,7 +21,7 @@ const Navbar = () => {
                         <li>Explore</li>
                         <li>About Us</li>
                         <li>Membership</li>
-                        <li>Write</li>
+                        <li><Link href={'/create'}>Write</Link></li>
                     </ul>
                 </nav>
                 <div className=" cursor-pointer flex gap-2 items-center">

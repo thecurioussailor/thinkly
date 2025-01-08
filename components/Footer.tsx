@@ -37,7 +37,7 @@ const Footer = () => {
                 
             </div>
             <div className="flex justify-between items-center border-t pt-10 text-[13px] text-gray-700 dark:text-[#ffffffb8]">
-                <div>© 2023 Meticulous. All rights reserved.</div>
+                <div>© 2024 Thinkly. All rights reserved.</div>
                 <div className="flex gap-6">
                     <p>Terms</p>
                     <p>Privacy</p>
