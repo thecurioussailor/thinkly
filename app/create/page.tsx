@@ -1,7 +1,6 @@
 "use client"
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useSession } from 'next-auth/react'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import { createBlog } from '../actions/blog'
@@ -15,7 +14,6 @@ export default function CreatePost() {
   const [tags, setTags] = useState<string[]>([])
   const [currentTag, setCurrentTag] = useState('')
   const router = useRouter()
-  const { data: session } = useSession()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -50,7 +48,7 @@ export default function CreatePost() {
           <Input
             name="title"
             placeholder="Title"
-            className="h-24 outline-none focus:text-[24px] placeholder:text-[24px]"
+            className="border-none focus-visible:ring-0 shadow-none"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required

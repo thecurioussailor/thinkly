@@ -17,7 +17,7 @@ const Signin = () => {
             data.forEach((value, key) => {
                 formObject[key] = value as string;
             });
-        const result = await signIn('credentials', {
+        await signIn('credentials', {
           redirect: false,
           email: formObject.email,
           password: formObject.password,

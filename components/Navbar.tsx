@@ -3,6 +3,7 @@ import { signOut, useSession } from "next-auth/react"
 import Link from "next/link"
 import { Button } from "./ui/Button"
 import { useState } from "react"
+import { DarkModeToggle } from "./DarkModeToggle"
 
 const Navbar = () => {
     const {data: session, status} = useSession();
@@ -24,12 +25,14 @@ const Navbar = () => {
                         <li><Link href={'/create'}>Write</Link></li>
                     </ul>
                 </nav>
-                <div className=" cursor-pointer flex gap-2 items-center">
+                <div className="cursor-pointer flex gap-2 items-center">
+                <DarkModeToggle />
                     {status === "authenticated" ? (
                         <div
                             className="relative"
                             onClick={() => setIsHovered(!isHovered)}
                         >
+                                
                                 {session.user?.image && (
                                     <img
                                         src={session.user.image}

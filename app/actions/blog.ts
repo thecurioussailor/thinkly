@@ -154,3 +154,88 @@ export async function getBlogBySlug(slug: string): Promise<BlogWithAuthorAndTags
 
   return blog
 }
+
+export async function searchBlogs(query: string, page: number = 1, limit: number = 9){
+  const skip = (page - 1) * limit;
+
+  const blogs = await prisma.blog.findMany({
+    where: {
+      published: true,
+      OR: [
+        {
+          slug: {
+            contains: query,
+            mode: 'insensitive'
+          }
+        },
+        {
+          content: {
+            contains: query,
+            mode: 'insensitive'
+          }
+        },
+        {
+          title: {
+            contains: query,
+            mode: 'insensitive'
+          }
+        }
+      ]
+    },
+    include: { 
+      author: {
+        select: {
+          name: true,
+          image: true
+        }
+      },
+      categories: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+      tags: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: 'desc'
+    },
+    skip,
+    take: limit
+  })
+  const total = await prisma.blog.count({
+    where: {
+      published: true,
+      OR: [
+        {
+          slug: {
+            contains: query,
+            mode: 'insensitive',
+          },
+        },
+        {
+          content: {
+            contains: query,
+            mode: 'insensitive',
+          },
+        },
+        {
+          title: {
+            contains: query,
+            mode: 'insensitive',
+          },
+        },
+      ],
+    },
+  })
+
+  return {
+    blogs,
+    hasMore: skip + blogs.length < total
+  }
+}
