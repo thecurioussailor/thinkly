@@ -6,6 +6,7 @@ import { HiListBullet } from "react-icons/hi2";
 import { GoListOrdered } from "react-icons/go";
 import { FaUndo } from "react-icons/fa";
 import { FaRedo } from "react-icons/fa";
+import { FaCode } from "react-icons/fa6";
 interface MenuBarProps {
   editor: Editor | null
 }
@@ -63,7 +64,7 @@ export const MenuBar = ({ editor }: MenuBarProps) => {
   }
 
   return (
-    <div className="flex flex-wrap mb-2">
+    <div className="flex">
       <Button
         type="button"
         onClick={() => editor.chain().focus().toggleBold().run()}
@@ -101,17 +102,11 @@ export const MenuBar = ({ editor }: MenuBarProps) => {
         >
           <Code/>
         </Button>
-        <button
-            onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-            className={editor.isActive('codeBlock') ? 'is-active' : ''}
-          >
-            Toggle code block
-          </button>
         <Button
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
           className={`border-b border-l bg-white rounded-none shadow-none text-black hover:bg-gray-200 ${editor.isActive('codeBlock') ? 'is-active' : ''}`}
         >
-          Code block
+          <FaCode/>
         </Button>
         <Button
           onClick={() => editor.chain().focus().setParagraph().run()}
@@ -136,24 +131,6 @@ export const MenuBar = ({ editor }: MenuBarProps) => {
           className={`border bg-white rounded-none shadow-none text-black hover:bg-gray-200 ${editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}`}
         >
           H3
-        </Button>
-        <Button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
-          className={`border-y bg-white rounded-none shadow-none text-black hover:bg-gray-200 ${editor.isActive('heading', { level: 4 }) ? 'is-active' : ''}`}
-        >
-          H4
-        </Button>
-        <Button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
-          className={`border bg-white rounded-none shadow-none text-black hover:bg-gray-200 ${editor.isActive('heading', { level: 5 }) ? 'is-active' : ''}`}
-        >
-          H5
-        </Button>
-        <Button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
-          className={`border-b border-l bg-white rounded-none shadow-none text-black hover:bg-gray-200 ${editor.isActive('heading', { level: 6 }) ? 'is-active' : ''}`}
-        >
-          H6
         </Button>
         <Button
           onClick={() => editor.chain().focus().toggleBulletList().run()}

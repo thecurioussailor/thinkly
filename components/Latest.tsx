@@ -51,7 +51,7 @@ const Latest = () => {
                 <div className="w-full flex justify-center">
                 <Button 
                     variant="outline" 
-                    className="py-[15px] px-[26px] font-normal text-[18px] w-96"
+                    className="py-[15px] px-[26px] font-normal text-[18px] w-96 text-white bg-black border-zinc-500 hover:bg-orange-300"
                     onClick={handleLoadMore}
                     disabled={isLoading}
                 >

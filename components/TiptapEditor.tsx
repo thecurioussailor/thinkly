@@ -3,7 +3,7 @@
 import { Color } from '@tiptap/extension-color'
 import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
-import { useEditor, EditorContent } from '@tiptap/react'
+import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { MenuBar } from './MenuBar'
 
@@ -62,7 +62,12 @@ const TiptapEditor = ({ content, onChange }: TipTapEditorProps) => {
 
   return (
     <div className="border rounded-md p-2">
-      {editor && <MenuBar editor={editor} />}
+      {editor && <BubbleMenu className="bubble-menu" tippyOptions={{ duration: 100 }} editor={editor}>
+        <MenuBar editor={editor}/>
+      </BubbleMenu>}
+      {editor && <FloatingMenu className="floating-menu" tippyOptions={{ duration: 100 }} editor={editor}>
+        <MenuBar editor={editor}/>
+      </FloatingMenu>}
       <EditorContent
         className='editor'
         editor={editor} 

@@ -61,17 +61,17 @@ const Filter = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-20 dark:bg-black">
+    <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-20">
       <div className="overflow-x-auto">
         <ul className="flex gap-4 whitespace-nowrap">
-          <li><Link href={'/'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] hover:bg-[#e39670]">All</Button></Link></li>
-          <li><Link href={'/featured'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] hover:bg-[#e39670]">Featured</Button></Link></li>
-          <li><Link href={'/latest'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] hover:bg-[#e39670]">Latest</Button></Link></li>
-          <li><Link href={'/category/software-development'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] hover:bg-[#e39670]">Software Development</Button></Link></li>
-          <li><Link href={'/category/typescript'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] hover:bg-[#e39670]">TypeScript</Button></Link></li>
-          <li><Link href={'/category/nextjs'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] hover:bg-[#e39670]">Next.js</Button></Link></li>
-          <li><Link href={'/category/react'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] hover:bg-[#e39670]">React</Button></Link></li>
-          <li><Link href={'/category/tailwind'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] hover:bg-[#e39670]">Tailwind</Button></Link></li>
+          <li><Link href={'/'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] text-white bg-black hover:bg-[#e39670]">All</Button></Link></li>
+          <li><Link href={'/featured'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] text-white bg-black hover:bg-[#e39670]">Featured</Button></Link></li>
+          <li><Link href={'/latest'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] text-white bg-black hover:bg-[#e39670]">Latest</Button></Link></li>
+          <li><Link href={'/category/software-development'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] text-white bg-black hover:bg-[#e39670]">Software Development</Button></Link></li>
+          <li><Link href={'/category/typescript'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] text-white bg-black hover:bg-[#e39670]">TypeScript</Button></Link></li>
+          <li><Link href={'/category/nextjs'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] text-white bg-black hover:bg-[#e39670]">Next.js</Button></Link></li>
+          <li><Link href={'/category/react'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] text-white bg-black hover:bg-[#e39670]">React</Button></Link></li>
+          <li><Link href={'/category/tailwind'}><Button variant="outline" className="py-2 px-4 text-base rounded-[4px] text-white bg-black hover:bg-[#e39670]">Tailwind</Button></Link></li>
         </ul>
       </div>
       <div className="relative" ref={dropdownRef}>

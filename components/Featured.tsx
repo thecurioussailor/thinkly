@@ -15,8 +15,8 @@ const Featured = () => {
                 />
             </div>
             <div className="w-[43%] py-10 px-14 flex flex-col justify-between relative">
-                <div className="text-[#282828] flex flex-col justify-start ">
-                    <h2 className="text-[#28282894] pb-5">December 30, 2023</h2>
+                <div className="flex flex-col justify-start ">
+                    <h2 className="pb-5">December 30, 2023</h2>
                     <p className="text-5xl mb-4">
                         Testing Frontend — Lessons from over a million lines of TypeScript at Palantir
                     </p>
